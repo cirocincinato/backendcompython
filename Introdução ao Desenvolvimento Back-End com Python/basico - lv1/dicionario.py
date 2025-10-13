@@ -14,6 +14,16 @@ meu_dicionario={
     "gato4":0,
     "gato45":0
 }
+#da para passar o lambida no dicioanrio
+
+meu_dicionariozinho={
+                "1":(lambda x,y: x+y),
+                "2":(lambda x,y: x-y),
+                "3":(lambda x,y:x*y),
+                "4":(lambda x,y:x/y)
+            }
+print("meu_dicionariozinho",meu_dicionariozinho['3'](10,10))
+
 for i in lista:
     print(i)
 

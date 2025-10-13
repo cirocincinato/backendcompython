@@ -12,7 +12,9 @@ for i in range(1,6):
 arrey_palavras.sort()
 print(arrey_palavras)
 '''
- A função sorted() é uma função embutida que pode ser usada com qualquer tipo de iterável (como listas, tuplas e dicionários). Ela retorna uma nova lista com os elementos ordenados, deixando a lista original inalterada.
+ A função sorted() é uma função embutida que pode ser usada com qualquer tipo de iterável
+(como listas, tuplas e dicionários). Ela retorna uma nova lista com os elementos ordenados,
+ deixando a lista original inalterada.
 Exemplo:
 python
 '''

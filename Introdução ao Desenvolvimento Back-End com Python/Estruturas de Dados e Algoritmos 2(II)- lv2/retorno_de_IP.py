@@ -6,7 +6,7 @@
 
 
 #receber a string com nosso endereço IP
-endereco_ip=input()
+endereco_ip="1.1.1.1"
 
 #fazer a operação para substituir os pontos por parenteses e ponto
 
