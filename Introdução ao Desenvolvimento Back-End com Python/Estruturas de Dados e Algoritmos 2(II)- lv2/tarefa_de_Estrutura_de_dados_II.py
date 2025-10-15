@@ -62,11 +62,7 @@ def menu():
               "5 - Sair")
         opcao=input("informa um valor numerico corespondente a opçaõ desejada:")
 
-        
-def main(opcao):
-    global dados_produtos
-    menu()
-    if opcao=="1":
+        if opcao=="1":
 
             produto=input("informe o nome do produto:")
 
@@ -76,23 +72,26 @@ def main(opcao):
 
             print(adicionar_produto(produto,quantidade,preco))
 
-    elif opcao=="2":
+        elif opcao=="2":
             print(listar_produtos())
 
-    elif opcao=="3":
+        elif opcao=="3":
             produto=input("informe o nome do produto:")
 
             print(remover_produto(produto))
-    elif opcao=="4":
+        elif opcao=="4":
             
             produto=input("informe o nome do produto:")
             quantidade=float(input("informe a quantidade disponivel(apenas numeros são aceitos):"))
 
             print(atualizar_quantidade_produto(produto,quantidade))
-    elif opcao=="5":
-        break
-    else:
+        elif opcao=="5":
+            break
+        else:
             print("selecione uma opção valida.")
+def main():
+    global dados_produtos
+    menu()
 
 if __name__ == "__main__":
     main()

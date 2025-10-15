@@ -4,7 +4,6 @@
 # reprovado (media (menor que)<5)
 
 # receba a média
-
 media=float(input())
 
 #aprovado, reprovado,recuperação:
