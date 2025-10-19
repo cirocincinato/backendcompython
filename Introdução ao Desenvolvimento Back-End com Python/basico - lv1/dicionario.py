@@ -47,11 +47,13 @@ que a ordenação deve ser feita pelo primeiro elemento de cada tupla, que é a 
 O resultado pode ser convertido de volta para um dicionário usando dict()
 '''
 itens_do_dicionario = tarefas.items()
-
+print(itens_do_dicionario)
         # Ordena a lista de tuplas pela chave (primeiro elemento de cada tupla)
 itens_ordenados = sorted(itens_do_dicionario, key=lambda item: item[0])
-
+print(itens_ordenados)
         # Converte a lista ordenada de volta para um dicionário
 dicionario_ordenado = dict(itens_ordenados)
 
 print("dicionario_ordenado")
+
+

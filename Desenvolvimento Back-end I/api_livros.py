@@ -1,4 +1,4 @@
-'''
+
 #API de livros
 
 #GET, POST,PUT,DELETE
@@ -11,7 +11,7 @@
 #CRUDE é =
 
 #create
-#read
+#   
 #update
 #delete
 
@@ -72,4 +72,3 @@ def delete_livro(id_livro:int):
     else:
         del meus_livrozinhos[id_livro]
         return{"message":"seu livro foi deletado"}
-'''

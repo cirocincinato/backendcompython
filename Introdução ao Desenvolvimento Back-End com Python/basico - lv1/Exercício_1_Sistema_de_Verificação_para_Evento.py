@@ -10,35 +10,9 @@ def verificar_idade(idade):
 
 # Função para verificar se o nome está na lista VIP
 def verificar_vip(nome):
-    if nome in convidados_vip
+    if nome in convidados_vip:
         return "Você é um convidado VIP! Aproveite o evento com acesso especial."
     else:
         return None
 
 # Programa principal
-def ____():
-    ____ ____:
-        idade_input = ____("____ ")
-
-        if ____.____() == ____:
-            ____
-
-        try:
-            idade = (____)
-        except ____:
-            print("____")
-            ____
-
-        mensagem = ____(____)
-        print(____)
-
-        if ____ ____ ____:
-            nome = ____("____ ")
-            if nome.____() == ____:
-                ____
-            mensagem_vip = ____(____)
-            if ____:
-                print(____)
-
-if __name__ == "____":
-    ____()

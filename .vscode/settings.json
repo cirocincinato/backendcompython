@@ -1,9 +1,0 @@
-{
-    "python-envs.pythonProjects": [
-        {
-            "path": "Introdução ao Desenvolvimento Back-End com Python/Estruturas de Dados e Algoritmos 2(II)- lv2/segunda_tentativa_de_desenvolvimento_tarefa_de_Estrutura_de_dados_II.py",
-            "envManager": "ms-python.python:venv",
-            "packageManager": "ms-python.python:pip"
-        }
-    ]
-}

@@ -12,26 +12,23 @@ def listar_livros(dicionario_livros):
     if not dicionario_livros:
         return "Não há livros cadastrados."
     else:
-        dicionario_livros_ordenado=dict(sorted(dicionario_livros.items()))
-        texto_ordenado=''
-        for chave,valor in dicionario_livros_ordenado.items():
-            texto_ordenado+=f"título {chave} - {valor['autor']} - {valor['quantidade']}\n"
-        return texto_ordenado
-        
+        dic_ordenado=dict(sorted(dicionario_livros.items(), key=lambda valor_da_tupla:valor_da_tupla[0]))
+        listagem_de_livros_em_str="\n".join(f"{chave} - {valor['autor']} - {valor['quantidade']}" for chave,valor in dic_ordenado.items())
+        return listagem_de_livros_em_str
     
 def remover_livro(dicionario_livros,chave_pai_nome_livro):
     if chave_pai_nome_livro in dicionario_livros:
         del dicionario_livros[chave_pai_nome_livro]
-        return "livro removido"
+        return f"{chave_pai_nome_livro} removido"
     else:
-        return "Erro: esse livro não está na base de dados"
+        return f"Erro: O livro '{chave_pai_nome_livro}' não foi encontrado."
 
 def atualizar_quantidade_de_livros(dicionario_livros,chave_pai_nome_livro,valor_filho_quantidade):
     if chave_pai_nome_livro in dicionario_livros:
         dicionario_livros[chave_pai_nome_livro]["quantidade"]=valor_filho_quantidade
-        return "Quantidade atualizada."
+        return f"Quantidade de exemplares do livro '{chave_pai_nome_livro}' atualizada para {valor_filho_quantidade}"
     else:
-        return "Não há histórico de empréstimos."
+        return f"Erro: O livro '{chave_pai_nome_livro}' não foi encontrado."
 
 def registrar_emprestimo(dicionario_livros,historico_emprestimos,chave_pai_nome_livro,valor_filho_quantidade):
     if chave_pai_nome_livro in dicionario_livros:
@@ -41,45 +38,33 @@ def registrar_emprestimo(dicionario_livros,historico_emprestimos,chave_pai_nome_
             dicionario_livros[chave_pai_nome_livro]['quantidade'] -= valor_filho_quantidade
             #para padronizar os valores dentro do array estou definindo que tudo 
             #que for armazenado vai ser string
-            historico_emprestimos.append(str(chave_pai_nome_livro))
-            historico_emprestimos.append(str(valor_filho_quantidade))
-            return "sdfsdfsd"
+            historico_emprestimos.append((chave_pai_nome_livro,valor_filho_quantidade))
+            return f"{chave_pai_nome_livro} - número de exemplares emprestados: {valor_filho_quantidade}"
         else:
             return "Erro exemplares insuficientes"
     else:
-        return "Erro esse livro não esta registrado"
+        return f"Erro: O livro '{chave_pai_nome_livro}' não foi encontrado."
 def historico_de_emprestio(historico_emprestimos):
     if not historico_emprestimos:
-        return "historico vazio"
+        return "Não há histórico de empréstimos."
     else:
-        string=''
-        cont=0
-        #com os valores padronizados é possivel acessar o array, 
-        # e criar a estring de 
-        # pares ordenados  
-        for i in historico_emprestimos:
-
-                cont+=1
-
-                if cont%2==0:
-                    string+=f"{i} \n"
-                else:
-                    string+=f"{i} "
-
-        return string
-
+        texto = "Histórico de empréstimos:\n"
+#listagem_de_livros_em_str="\n".join(f"{chave} - {valor['autor']} - {valor['quantidade']}" for chave,valor in dic_ordenado.items())
+        texto_final="\n".join(f"{livro} - {quantidade} exemplar(es)" for livro,quantidade in historico_emprestimos)
+        return texto+texto_final
 def exibir_menu():
     return "menu:\n1 - Adicionar livro\n2 - Listar livros\n3 - Remover livro\n4 - Atualizar quantidade de livros\n5 - Registrar empréstimo\n6 - Exibir histórico de empréstimos\n7 - Sair"
-
+    #return "---escolha----:"
 def main():
     dicionario_livros={}
     historico_emprestimos=[]
     while True:
+        #print(dicionario_livros)
         print(exibir_menu())
         option=input("escolha uma opção de 1 a 7: ")
         if option=="1":
             while True: 
-                chave_pai_nome_livro=input("nome do licro: ")
+                chave_pai_nome_livro=input("Título do livro: ")
                 if not chave_pai_nome_livro:
                     print("O campo não pode estar vazio.")
                 else:
@@ -88,14 +73,14 @@ def main():
             while True:
                 try:
                     
-                    valor_filho_quantidade=int(input("quantidade de exemplares disponíveis: "))
+                    valor_filho_quantidade=int(input("Quantidade: "))
                     break
                 except ValueError:
                 
                     print("Erro: apenas numeros inteiros")
 
             while True:
-                valor_filho_autor=input("nome do autor: ")
+                valor_filho_autor=input("Autor: ")
                 if not valor_filho_autor:
                     print("O campo não pode estar vazio.")
                 else:
@@ -108,7 +93,7 @@ def main():
             print(listar_livros(dicionario_livros))
         elif option=="3":
             while True: 
-                chave_pai_nome_livro=input("nome do livro: ")
+                chave_pai_nome_livro=input("Título do livro a remover: ")
                 if not chave_pai_nome_livro:
                     print("O campo não pode estar vazio.")
                 else:
@@ -116,7 +101,7 @@ def main():
             print(remover_livro(dicionario_livros,chave_pai_nome_livro))
         elif option=="4":
             while True: 
-                chave_pai_nome_livro=input("nome do livro: ")
+                chave_pai_nome_livro=input("Título do livro: ")
                 if not chave_pai_nome_livro:
                     print("O campo não pode estar vazio.")
                 else:
@@ -125,16 +110,16 @@ def main():
             while True:
                 try:
                     
-                    valor_filho_quantidade=int(input("quantidade de exemplares a ser atualizada: "))
+                    valor_filho_quantidade=int(input("Nova quantidade: "))
                     break
                 except ValueError:
                     print("Erro: apenas numeros inteiros")
             print(atualizar_quantidade_de_livros(dicionario_livros,chave_pai_nome_livro,valor_filho_quantidade))
         elif option=="5":
-            chave_pai_nome_livro=input("nome do livro: ")
+            chave_pai_nome_livro=input("Título do livro: ")
             while True:
                 try:
-                    valor_filho_quantidade=int(input("quantidade de exemplares do emprestimo: "))
+                    valor_filho_quantidade=int(input("Quantidade para empréstimo: "))
                     break
                 except ValueError:
                     print("Erro: apenas numeros inteiros")
@@ -147,6 +132,6 @@ def main():
             print("saindo...")
             break
         else:
-            print("Erro: opção invalida. Tente outraz vez!")
+            print("Erro: Opção invalida. Tente outraz vez!")
 
 main()
